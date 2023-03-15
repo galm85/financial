@@ -6,5 +6,13 @@
 
 
 body{
-    background-color: red;
+    font-family: $mainFont;
+    font-weight: 400;
+    font-size: 62.5%;
+}
+
+
+.App{
+    width: 100%;
+    height: 100vh;
 }

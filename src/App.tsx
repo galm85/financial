@@ -1,8 +1,11 @@
+import { Expenses,Balance,Navbar} from "./components";
 
 function App() {
   return (
     <div className="App">
-        <h1>Hello</h1>      
+       <Navbar/>
+       <Balance/>
+       <Expenses/>
     </div>
   );
 }
