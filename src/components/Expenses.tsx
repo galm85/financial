@@ -1,5 +1,5 @@
 import axios from "axios";
-import { FormEvent, useEffect,useState } from "react"
+import { FormEvent, useEffect,useRef,useState } from "react"
 import { Expense } from "../types/Expense";
 
 
@@ -11,20 +11,29 @@ const Expenses = ({expenses}:Props) => {
 
     const [displayNew,setDisplayNow] = useState<Boolean>(false);
     const [newExpense,setNewExpense] = useState<Expense>({} as Expense);
+    const errorRef = useRef(null);
+
 
     const handleChange = (e:any)=>{
         setNewExpense({...newExpense,[e.target.name]:e.target.value});
     }
 
-    const handleSubmit = (e:FormEvent)=>{
+    const handleSubmit = async (e:FormEvent)=>{
         e.preventDefault();
-        let id = Math.round(Math.random() * 10000000) ;
-        console.log(id);
+        try {
+            const res = await axios.post('http://localhost:4000/expenses',newExpense);
+            setDisplayNow(false);
+            
+        } catch (error) {
+            
+        }
+        
     }
     
 
   return (
     <div className='expenses'>
+
         <div className="expenses__add-new">
             <button className='expenses__btn' onClick={()=>setDisplayNow(true)}>Add New</button>
         </div>
@@ -53,7 +62,7 @@ const Expenses = ({expenses}:Props) => {
 
         {displayNew && 
                 <div className="expenses__new-modal">
-                
+                        <h6 ref={errorRef} className="error"></h6>
                     <form className="expenses__form" onSubmit={handleSubmit}>
                         <div className="form-group">
                             <label htmlFor="date">Date</label>

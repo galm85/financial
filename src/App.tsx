@@ -5,14 +5,14 @@ import axios from 'axios';
 
 function App() {
   
-  const [expenses, setExpenses] = useState<Expense[]>([]);
+    const [expenses, setExpenses] = useState<Expense[]>([]);
     const [paycheck, setPaycheck] = useState<number>(0);
     const [outcome,setOutcome] = useState<number>(209)
 
     const getData = async()=>{
-        const expensesJson = await axios.get('data/expenses.json');
+        const expensesJson = await axios.get('http://localhost:4000/expenses');
         setExpenses(expensesJson.data);
-        const paycheckJson = await axios.get('data/paycheck.json');
+        const paycheckJson = await axios.get('http://localhost:4000/paycheck');
         setPaycheck(paycheckJson.data.paycheck);
 
 

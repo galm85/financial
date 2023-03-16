@@ -1,10 +1,11 @@
 const router = require('express').Router();
-const expenses = require('../data/expenses.json')
-
+// const expenses = require('../data/expenses.json')
+const Expense = require ('../models/Expenses.model');
 
 
 router.get('/',async(req,res,next)=>{
 
+    const expenses = await Expense.find();
     res.send(expenses);
 
 })
@@ -12,7 +13,18 @@ router.get('/',async(req,res,next)=>{
 
 
 router.post('/',async(req,res)=>{
-    res.send('new expnds');
+   
+    try {
+        const expense = new Expense(req.body)
+        await expense.save();
+        res.status(200).json(expense);
+        
+    } catch (error) {
+        console.log(error);
+        res.status(400).json('error',error);
+    }
+
+
 })
 
 
