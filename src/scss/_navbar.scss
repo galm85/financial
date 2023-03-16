@@ -1,9 +1,53 @@
 .header{
     width: 100%;
-    height: 10vh;
-    background-color: blue;
-    padding: 0 5rem;
+    height: 5vh;
+    background-color: $color-blue;
+    color: $color-gray-light;
+    padding: 0 3rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+
+    &__menu{
+        position: relative;
+        z-index: 1000;
+
+       
+    }
+
+
+    &__sidenav{
+        position: absolute;
+        transition: all 0.2s ease;
+        right:0;
+        top:5vh;
+        background-color: $color-blue;
+        width: 30%;
+        height: 95vh;
+        z-index: 500;
+
+        &--open{
+            transform: translateY(0);
+           
+        }
+
+        &--close{
+          transform: translateY(-100%);
+            
+        }
+    
+        & ul li{
+            list-style: none;
+            display: block;
+            height: 2rem;
+            width: 100%;
+            border-bottom: 1px solid $color-gray-light;
+            display: flex;
+            align-items: center;
+            padding: 0 1rem;
+        }
+    }
+
+    
 }
