@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect,useState } from "react"
+import { FormEvent, useEffect,useState } from "react"
 import { Expense } from "../types/Expense";
 
 
@@ -9,13 +9,24 @@ type Props = {
 
 const Expenses = ({expenses}:Props) => {
 
+    const [displayNew,setDisplayNow] = useState<Boolean>(false);
+    const [newExpense,setNewExpense] = useState<Expense>({} as Expense);
 
+    const handleChange = (e:any)=>{
+        setNewExpense({...newExpense,[e.target.name]:e.target.value});
+    }
+
+    const handleSubmit = (e:FormEvent)=>{
+        e.preventDefault();
+        let id = Math.round(Math.random() * 10000000) ;
+        console.log(id);
+    }
     
 
   return (
     <div className='expenses'>
         <div className="expenses__add-new">
-            <button className='expenses__btn'>Add New</button>
+            <button className='expenses__btn' onClick={()=>setDisplayNow(true)}>Add New</button>
         </div>
 
         
@@ -39,6 +50,31 @@ const Expenses = ({expenses}:Props) => {
             </div>
           
         </div>
+
+        {displayNew && 
+                <div className="expenses__new-modal">
+                
+                    <form className="expenses__form" onSubmit={handleSubmit}>
+                        <div className="form-group">
+                            <label htmlFor="date">Date</label>
+                            <input type="text" id="date" className="input" name="date"  onChange={handleChange} />
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="title">Title</label>
+                            <input type="text" id="title" className="input"name="title" onChange={handleChange}/>
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="sum">Sum</label>
+                            <input type="number" id="sum" className="input"name="sum"  onChange={handleChange}/>
+                        </div>
+
+
+                        <button className="expenses__submit">Save</button>
+                    </form>
+
+                    <button className="expenses__cancel" onClick={()=>setDisplayNow(false)} >Cancel</button>
+                </div>
+        }
     </div>
   )
 }
