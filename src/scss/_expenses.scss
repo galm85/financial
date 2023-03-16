@@ -1,11 +1,24 @@
 .expenses{
 
     width: 90%;
-    margin: auto;
+    margin:0 auto;
+    height: 75%;
+    overflow:scroll;
     
     &__add-new{
         width: 90%;
-        margin:3rem auto;
+        margin:1rem auto;
+        text-align: center;
+    }
+
+    &__btn{
+        border: none;
+        outline: none;
+        font-family: $mainFont;
+        background-color: $color-blue;
+        color: $color-white;
+        padding: 0.5rem 1rem;
+        border-radius: 0.2rem;
     }
 
 
@@ -19,6 +32,13 @@
     &__header{
         display: flex;
         width: 100%;
+        
+
+        .expenses__cell{
+            border-bottom:0.5px solid  $color-gray-light;
+            color: $color-blue;
+            font-weight: $bold;
+        }
     }
     
     &__body{
@@ -29,14 +49,28 @@
     &__row{
         width: 100%;
         display: flex;
+        
     }
 
     &__cell{
         padding: 0.5rem 1rem;
 
-        &-date{
-            flex:1;
+        &-index{
+            width: 2%;
         }
+
+        &-title{
+            width: 45%;
+        }
+
+        &-date{
+            width: 25%;
+        }
+
+        &-sum{
+            width: 28%;
+        }
+        
     }
 
 

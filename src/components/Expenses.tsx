@@ -1,12 +1,24 @@
-import React from 'react'
+import axios from "axios";
+import { useEffect,useState } from "react"
+import { Expense } from "../types/Expense";
 
-const Expenses = () => {
+
+type Props = {
+    expenses:Expense[];
+}
+
+const Expenses = ({expenses}:Props) => {
+
+
+    
+
   return (
     <div className='expenses'>
         <div className="expenses__add-new">
             <button className='expenses__btn'>Add New</button>
         </div>
 
+        
         <div className="expenses__table">
             <div className="expenses__header">
                 <div className="expenses__cell expenses__cell-index">#</div>
@@ -15,24 +27,15 @@ const Expenses = () => {
                 <div className="expenses__cell expenses__cell-sum">Sum</div>
             </div>
             <div className="expenses__body">
-                <div className="expenses__row">
-                    <div className="expenses__cell expenses__cell-index">#</div>
-                    <div className="expenses__cell expenses__cell-date">2/11/29</div>
-                    <div className="expenses__cell expenses__cell-title">Super Market</div>
-                    <div className="expenses__cell expenses__cell-sum">$400</div>
-                </div>
-                <div className="expenses__row">
-                    <div className="expenses__cell">#</div>
-                    <div className="expenses__cell">2/11/29</div>
-                    <div className="expenses__cell">Super Market</div>
-                    <div className="expenses__cell">$400</div>
-                </div>
-                <div className="expenses__row">
-                    <div className="expenses__cell">#</div>
-                    <div className="expenses__cell">2/11/29</div>
-                    <div className="expenses__cell">Super Market</div>
-                    <div className="expenses__cell">$400</div>
-                </div>
+                {expenses && expenses.map((expense,index)=>(
+                    <div className="expenses__row" key={index}>
+                        <div className="expenses__cell expenses__cell-index">{index+1}</div>
+                        <div className="expenses__cell expenses__cell-date">{expense.date}</div>
+                        <div className="expenses__cell expenses__cell-title">{expense.title}</div>
+                        <div className="expenses__cell expenses__cell-sum">${expense.sum}</div>
+                    </div>
+                ))}
+              
             </div>
           
         </div>
