@@ -4,10 +4,11 @@ import { Expense } from "../types/Expense";
 
 
 type Props = {
-    expenses:Expense[];
+    fixedExpenses:Expense[];
+    occasionalExpenses:Expense[];
 }
 
-const Expenses = ({expenses}:Props) => {
+const Expenses = ({occasionalExpenses,fixedExpenses}:Props) => {
 
     const [displayNew,setDisplayNow] = useState<Boolean>(false);
     const [newExpense,setNewExpense] = useState<Expense>({} as Expense);
@@ -38,7 +39,7 @@ const Expenses = ({expenses}:Props) => {
             <button className='expenses__btn' onClick={()=>setDisplayNow(true)}>Add New</button>
         </div>
 
-        
+        <h3>Fixed Expenses</h3>
         <div className="expenses__table">
             <div className="expenses__header">
                 <div className="expenses__cell expenses__cell-index">#</div>
@@ -47,7 +48,29 @@ const Expenses = ({expenses}:Props) => {
                 <div className="expenses__cell expenses__cell-sum">Sum</div>
             </div>
             <div className="expenses__body">
-                {expenses && expenses.map((expense,index)=>(
+                {fixedExpenses && fixedExpenses.map((expense,index)=>(
+                    <div className="expenses__row" key={index}>
+                        <div className="expenses__cell expenses__cell-index">{index+1}</div>
+                        <div className="expenses__cell expenses__cell-date">{expense.date}</div>
+                        <div className="expenses__cell expenses__cell-title">{expense.title}</div>
+                        <div className="expenses__cell expenses__cell-sum">${expense.sum}</div>
+                    </div>
+                ))}
+              
+            </div>
+          
+        </div>
+
+        <h3 style={{marginTop:'50px'}}>Occasional Expenses</h3>
+        <div className="expenses__table">
+            <div className="expenses__header">
+                <div className="expenses__cell expenses__cell-index">#</div>
+                <div className="expenses__cell expenses__cell-date">Date</div>
+                <div className="expenses__cell expenses__cell-title">Title</div>
+                <div className="expenses__cell expenses__cell-sum">Sum</div>
+            </div>
+            <div className="expenses__body">
+                {occasionalExpenses && occasionalExpenses.map((expense,index)=>(
                     <div className="expenses__row" key={index}>
                         <div className="expenses__cell expenses__cell-index">{index+1}</div>
                         <div className="expenses__cell expenses__cell-date">{expense.date}</div>

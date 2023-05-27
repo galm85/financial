@@ -1,6 +1,9 @@
 export type Expense ={
     id:string;
-    date:string;
+    date?:string;
     title:string;
     sum:number;
+    type:string;
 }
+
+
