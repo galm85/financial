@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { TbPigMoney } from 'react-icons/tb';
 
-const Navbar = () => {
+const Navbar = ({user}:any) => {
 
   const [displaySidenav,setDisplaySidenav] = useState<Boolean>(false);
 
@@ -13,6 +13,12 @@ const Navbar = () => {
         <div className="header__logo-container">
            <TbPigMoney size="3rem"/>
         </div>
+
+        <div>
+          {user.firstName[0].toUpperCase()}
+          {user.lastName[0].toUpperCase()}
+        </div>
+
         <div className="header__menu">
             <GiHamburgerMenu onClick={()=>setDisplaySidenav(!displaySidenav)}/>
             
