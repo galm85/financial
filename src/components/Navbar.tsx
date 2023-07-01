@@ -15,8 +15,8 @@ const Navbar = ({user}:any) => {
         </div>
 
         <div>
-          {user.firstName[0].toUpperCase()}
-          {user.lastName[0].toUpperCase()}
+          {user?.firstName[0].toUpperCase()}
+          {user?.lastName[0].toUpperCase()}
         </div>
 
         <div className="header__menu">

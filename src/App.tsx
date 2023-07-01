@@ -3,7 +3,7 @@ import { Routes,Route } from 'react-router-dom';
 import Signin from './pages/Signin';
 import Home from "./pages/Home";
 import jwt_decode from "jwt-decode";
-import { useEffect } from "react";
+import Profile from "./pages/Profile";
 
 
 //functions
@@ -32,6 +32,10 @@ console.log(user);
         <Routes>
           <Route path='/signin' element={<Signin/>} />
           <Route path="/" element={<Home/>}/>
+          
+          <Route path="/profile/:userId" element={user ? <Profile user={user}/> : <Signin/>} />
+          
+        
         </Routes>
        
        </main>
