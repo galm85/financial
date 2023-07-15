@@ -2,6 +2,8 @@ import { TextField } from '@mui/material'
 import React, { useState } from 'react'
 import { TbPigMoney } from 'react-icons/tb';
 import axios from 'axios';
+import {useDispatch} from 'react-redux';
+import { signInUser } from '../store/actions/users';
 
 
  type SigninUser = {
@@ -10,7 +12,8 @@ import axios from 'axios';
 }
 
 const Signin =() => {
-
+  
+  const dispatch:any = useDispatch();
   const [user,setUser] = useState<SigninUser>({} as SigninUser);
   const [error,setError] = useState<SigninUser>({} as SigninUser);
   const [loginError,setLoginError] = useState<string>('');
@@ -35,14 +38,18 @@ const Signin =() => {
       return;
     }
 
-    try{
-      const res = await axios.post(`${process.env.REACT_APP_SERVER_API}/users/sign-in`,user);
-      localStorage.setItem('finance',res.data.token);
-    }catch(e:any){
-      setLoginError(e.response.data.message);
-    }
+    dispatch(signInUser(user));
 
-    window.location.href =  './';
+
+
+    // try{
+    //   const res = await axios.post(`${process.env.REACT_APP_SERVER_API}/users/sign-in`,user);
+    //   localStorage.setItem('finance',res.data.token);
+    // }catch(e:any){
+    //   setLoginError(e.response.data.message);
+    // }
+
+    // window.location.href =  './';
     
 
     

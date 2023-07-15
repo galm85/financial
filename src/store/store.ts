@@ -4,6 +4,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 
 
 //reducers
+import { usersReducers } from "./reducers/usersReducer";
 
 
 
@@ -12,7 +13,8 @@ const initialState={};
 
 
 const rootReducer = combineReducers({
-    
+    users:usersReducers,
+
 })
 
 
