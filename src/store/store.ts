@@ -1,11 +1,11 @@
 import { combineReducers,createStore,applyMiddleware,compose } from "redux";
 import thunk from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension';
-import { State } from "../types/Redux";
 
 
 //reducers
 import { usersReducers } from "./reducers/usersReducer";
+import { expencesReducers } from "./reducers/expencesReducer";
 
 
 
@@ -15,6 +15,7 @@ const initialState ={};
 
 const rootReducer = combineReducers({
     usersReducers,
+    expencesReducers,
 
 })
 

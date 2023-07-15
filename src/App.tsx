@@ -3,8 +3,10 @@ import { Routes,Route } from 'react-router-dom';
 import Signin from './pages/Signin';
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { State } from "./types/Redux";
+import { useEffect, useState } from "react";
+import { getFiexdExpences, getOccasionalExpences } from "./store/actions/expences";
 
 //functions
 
@@ -13,15 +15,34 @@ import { State } from "./types/Redux";
 
 function App() {
 
+  const dispatch:any = useDispatch();
   const user = useSelector((state:State)=>state.usersReducers.user);
-  console.log(user);
+  const [ready,setReady] = useState<boolean>(false);
 
+  useEffect(()=>{
+
+    const getData =async () => {
+      if(user){
+        await dispatch(getFiexdExpences(user._id))
+        await dispatch(getOccasionalExpences(user._id));    
+      }
+      setReady(true);
+    }
+    getData();
+    
+    
+  },[])
+
+
+  if(!ready){
+    return <div>Loading</div>
+  }
 
   return (
     <div className="App">
         <Navbar user={user} />
        <main>
-          {user ? 
+          {user && ready ? 
             <Routes>
                 <Route path="/" element={<Home user={user}/>}/>
             {/* <Route path="/profile/:userId" element={user ? <Profile user={user}/> : <Signin/>} /> */}
