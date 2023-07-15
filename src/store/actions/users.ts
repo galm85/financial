@@ -1,5 +1,4 @@
 import axios from 'axios';
-// import {url} from '../../config';
 import jwtDecode from "jwt-decode";
 const url = process.env.REACT_APP_SERVER_API;
 
@@ -37,9 +36,7 @@ const url = process.env.REACT_APP_SERVER_API;
 export const signInUser = (user:{email:string,password:string})=>async(dispatch:any)=>{
     try{
         const res = await axios.post(`${url}/users/sign-in`,user);
-        console.log(res.data);
         const signInUser = jwtDecode(res.data.token);
-        console.log(signInUser);
         localStorage.setItem('finance',res.data.token);
         dispatch({
             type:'sign-in',

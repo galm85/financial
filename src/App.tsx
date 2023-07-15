@@ -2,9 +2,9 @@ import { Navbar} from "./components";
 import { Routes,Route } from 'react-router-dom';
 import Signin from './pages/Signin';
 import Home from "./pages/Home";
-import jwt_decode from "jwt-decode";
 import Profile from "./pages/Profile";
-
+import { useSelector } from "react-redux";
+import { State } from "./types/Redux";
 
 //functions
 
@@ -12,18 +12,13 @@ import Profile from "./pages/Profile";
 
 
 function App() {
+
+  const user = useSelector((state:State)=>state.userReducer?.user);
+
   
-const getUserData = ()=>{
-  
-    const token = localStorage.getItem('finance');
-    if(token){
-      return jwt_decode(token); 
-    }
-    return null
-  
-}
-const user = getUserData();
-console.log(user);
+
+
+
 
   return (
     <div className="App">
@@ -32,10 +27,7 @@ console.log(user);
         <Routes>
           <Route path='/signin' element={<Signin/>} />
           <Route path="/" element={<Home/>}/>
-          
           <Route path="/profile/:userId" element={user ? <Profile user={user}/> : <Signin/>} />
-          
-        
         </Routes>
        
        </main>
