@@ -1,12 +1,11 @@
 import { useState } from 'react';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { TbPigMoney } from 'react-icons/tb';
+import SideMenu from './SideMenu';
+
 
 const Navbar = ({user}:any) => {
 
-  const [displaySidenav,setDisplaySidenav] = useState<Boolean>(false);
-
-  
 
   return (
     <header className="header">
@@ -19,18 +18,10 @@ const Navbar = ({user}:any) => {
           {user?.lastName[0].toUpperCase()}
         </div>
 
-        <div className="header__menu">
-            <GiHamburgerMenu onClick={()=>setDisplaySidenav(!displaySidenav)}/>
-            
-        </div>
-        <div className={displaySidenav?'header__sidenav header__sidenav--open':'header__sidenav header__sidenav--close'}>
-            <ul>
-              <li>History</li>
-              <li>Paycheck</li>
-              <li>History</li>
-              <li>History</li>
-            </ul>
-        </div>
+        
+      
+        <SideMenu />
+       
        
     </header>
   )

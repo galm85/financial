@@ -7,47 +7,33 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-
-
-    &__menu{
-        position: relative;
-        z-index: 1000;
-
-       
-    }
-
-
-    &__sidenav{
-        position: absolute;
-        transition: all 0.2s ease;
-        right:0;
-        top:5vh;
-        background-color: $color-blue;
-        width: 30%;
-        height: 95vh;
-        z-index: 500;
-
-        &--open{
-            transform: translateY(0);
-           
-        }
-
-        &--close{
-          transform: translateY(-100%);
-            
-        }
-    
-        & ul li{
-            list-style: none;
-            display: block;
-            height: 2rem;
-            width: 100%;
-            border-bottom: 1px solid $color-gray-light;
-            display: flex;
-            align-items: center;
-            padding: 0 1rem;
-        }
-    }
-
     
 }
+
+
+
+.side-menu{
+    width: 250px;
+
+    &-top{
+        height: 80px;
+        display: flex;
+        align-items: center;
+        padding: 20px;;
+    }
+
+    &-item{
+        height: 50px;
+        display: flex;
+        margin: auto 20px;
+        align-items: center;
+
+        a{
+            font-size: 20px;
+            text-decoration: none;
+        }
+    }
+}
+
+
+
