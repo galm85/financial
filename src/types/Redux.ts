@@ -7,7 +7,7 @@ export type Action = {
 
 
 export type State = {
-   userReducer:UserReducer;
+   usersReducers:UserReducer;
 }
 
 

@@ -3,18 +3,19 @@ import { Expenses,Balance,Navbar} from "../components";
 import { Expense } from '../types/Expense';
 import axios from 'axios';
 import { Routes,Route } from 'react-router-dom';
+import { User } from '../types/User';
 
 
 
 //functions
-const Home = () => {
+const Home:React.FC<{ user: User}> = ({user}) => {
 
 
     const [fixedExpenses, setFixedExpenses] = useState<Expense[]>([]);
     const [occasionalExpenses, setOccasionalExpenses] = useState<Expense[]>([]);
-    const [paycheck, setPaycheck] = useState<number>(10000);
     const [outcome,setOutcome] = useState<number>(0)
-
+    console.log(user);
+    const paycheck = user?.paycheck || 0;
 
     useEffect(()=>{
        
@@ -53,7 +54,7 @@ const Home = () => {
    
   return (
     <div>
-        <Balance paycheck={paycheck} outcome={outcome}/>
+       <Balance paycheck={paycheck} outcome={outcome}/>
        <Expenses  occasionalExpenses={occasionalExpenses} fixedExpenses={fixedExpenses}/>
     </div>
   )

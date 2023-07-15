@@ -13,22 +13,22 @@ import { State } from "./types/Redux";
 
 function App() {
 
-  const user = useSelector((state:State)=>state.userReducer?.user);
-
-  
-
-
+  const user = useSelector((state:State)=>state.usersReducers.user);
+  console.log(user);
 
 
   return (
     <div className="App">
-       <Navbar user={user}/>
+        <Navbar user={user} />
        <main>
-        <Routes>
-          <Route path='/signin' element={<Signin/>} />
-          <Route path="/" element={<Home/>}/>
-          <Route path="/profile/:userId" element={user ? <Profile user={user}/> : <Signin/>} />
-        </Routes>
+          {user ? 
+            <Routes>
+                <Route path="/" element={<Home user={user}/>}/>
+            {/* <Route path="/profile/:userId" element={user ? <Profile user={user}/> : <Signin/>} /> */}
+            </Routes>
+          :
+            <Signin/>
+          }
        
        </main>
     </div>

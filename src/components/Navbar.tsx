@@ -1,10 +1,15 @@
 import { TbPigMoney } from 'react-icons/tb';
 import SideMenu from './SideMenu';
 import { User } from '../types/User';
+import { useSelector } from 'react-redux';
+import { State } from '../types/Redux';
 
 const Navbar:React.FC<{ user: User | null }> = ({user}) => {
   
   
+  // const user = useSelector((state:State)=>state.usersReducers.user);
+  // console.log(user);
+
   return (
     <header className="header">
         <div className="header__logo-container">
