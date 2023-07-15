@@ -18,7 +18,8 @@ export type UserReducer = {
 }
 
 export type ExpencesReducer = {
-   fiexdExpences:Expense[];
+   fixedExpences:Expense[];
    occasionalExpences:Expense[];
+   outcome:number;
 }
 

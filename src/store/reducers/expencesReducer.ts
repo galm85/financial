@@ -2,9 +2,9 @@ import jwtDecode from "jwt-decode";
 import { Action, ExpencesReducer } from "../../types/Redux";
 
 const initialState:ExpencesReducer = {
-    fiexdExpences:[],
-    occasionalExpences:[]
-
+    fixedExpences:[],
+    occasionalExpences:[],
+    outcome:0
     
 }
 
@@ -14,7 +14,7 @@ export const expencesReducers = (state=initialState,action:Action)=>{
         case 'getFiexdExpences':
             return{
                 ...state,
-                fiexdExpences:action.payload
+                fixedExpences:action.payload
             }
 
         case 'getOccasionalExpences':
@@ -22,7 +22,14 @@ export const expencesReducers = (state=initialState,action:Action)=>{
                 ...state,
                 occasionalExpences:action.payload
             }
+        
+        case 'getOutcome':
+            return{
+                ...state,
+                outcome:action.payload
+            }
    
+        
 
 
  

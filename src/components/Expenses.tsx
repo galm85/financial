@@ -1,16 +1,16 @@
 import axios from "axios";
 import { FormEvent, useEffect,useRef,useState } from "react"
 import { Expense } from "../types/Expense";
-import { useSelector } from "react-redux";
-import { State } from "../types/Redux";
 
 
+type Props = {
+    fixedExpenses: Expense[];
+    occasionalExpenses:Expense[];
+}
 
 
-const Expenses = ()=> {
+const Expenses = ({fixedExpenses,occasionalExpenses}:Props)=> {
 
-    const fixedExpenses = useSelector((state:State)=>state.expencesReducers.fiexdExpences);
-    const occasionalExpenses = useSelector((state:State)=>state.expencesReducers.occasionalExpences);
     const [displayNew,setDisplayNow] = useState<Boolean>(false);
     const [newExpense,setNewExpense] = useState<Expense>({} as Expense);
     const errorRef = useRef(null);

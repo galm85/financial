@@ -17,32 +17,13 @@ function App() {
 
   const dispatch:any = useDispatch();
   const user = useSelector((state:State)=>state.usersReducers.user);
-  const [ready,setReady] = useState<boolean>(false);
-
-  useEffect(()=>{
-
-    const getData =async () => {
-      if(user){
-        await dispatch(getFiexdExpences(user._id))
-        await dispatch(getOccasionalExpences(user._id));    
-      }
-      setReady(true);
-    }
-    getData();
-    
-    
-  },[])
-
-
-  if(!ready){
-    return <div>Loading</div>
-  }
+  
 
   return (
     <div className="App">
         <Navbar user={user} />
        <main>
-          {user && ready ? 
+          {user  ? 
             <Routes>
                 <Route path="/" element={<Home user={user}/>}/>
             {/* <Route path="/profile/:userId" element={user ? <Profile user={user}/> : <Signin/>} /> */}
